@@ -28,9 +28,23 @@
 }
 
 -(void)setTheme{
+    [ZXTheme defaultTheme].zx_labelThemeBlock = ^ZXLabelTheme * _Nonnull(UILabel * _Nonnull label) {
+        ZXLabelTheme *labelTheme = [[ZXLabelTheme alloc]init];
+        labelTheme.textColor = [UIColor blueColor];
+        labelTheme.textAlignment = NSTextAlignmentCenter;
+        return labelTheme;
+    };
+    [ZXTheme defaultTheme].zx_tableViewThemeBlock = ^ZXTableViewTheme * _Nonnull(UITableView * _Nonnull tableView) {
+        ZXTableViewTheme *tableViewTheme = [[ZXTableViewTheme alloc]init];
+        tableViewTheme.viewForHeaderInSection = ^UIView * _Nonnull(UIView * _Nonnull headerView, NSUInteger section) {
+            headerView.backgroundColor = [UIColor redColor];
+            return headerView;
+        };
+        return tableViewTheme;
+    };
+    return;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [[ZXTheme defaultTheme] zx_setDarkTheme];
         [[ZXTheme defaultTheme] zx_themeUpdate];
     });
     return;

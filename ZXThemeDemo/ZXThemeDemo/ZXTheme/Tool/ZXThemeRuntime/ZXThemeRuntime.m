@@ -7,6 +7,7 @@
 //
 
 #import "ZXThemeRuntime.h"
+#import "ZXTheme.h"
 #import <UIKit/UIKit.h>
 #import <objc/message.h>
 
@@ -78,6 +79,15 @@
 }
 
 + (void)addThemeTrigger:(id)target{
+    id (^themeBlock)(id owner);
+    NSString *themeBlockDec = [NSString stringWithFormat:@"zx_%@ThemeBlock",[NSStringFromClass([target class]) substringFromIndex:2]];
+    if([[ZXTheme defaultTheme] respondsToSelector:NSSelectorFromString(themeBlockDec)]){
+        themeBlock = [[ZXTheme defaultTheme] valueForKey:themeBlockDec];
+    }
+    if(!themeBlock){
+        return;
+    }
+    id theme = themeBlock(target);
     NSString *themeClassStr = [NSString stringWithFormat:@"ZX%@Theme",[NSStringFromClass([target class]) substringFromIndex:2]];
     Class themeClass = NSClassFromString(themeClassStr);
     if(themeClass){
@@ -89,7 +99,7 @@
             NSString *propertyName = [NSString stringWithUTF8String: propertyNameChar];
             NSString *proSetStr = [NSString stringWithFormat:@"set%@:",[propertyName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[propertyName substringToIndex:1] capitalizedString]]];
             SEL proSetSel = NSSelectorFromString(proSetStr);
-            if([target respondsToSelector:proSetSel]){
+            if([target respondsToSelector:proSetSel] && [theme respondsToSelector:proSetSel] && [theme valueForKey:propertyName]){
                 [target performSelector:proSetSel withObject:[target valueForKey:propertyName] afterDelay:0];
             }
         }

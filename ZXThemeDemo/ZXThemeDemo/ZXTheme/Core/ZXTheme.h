@@ -12,6 +12,7 @@
 #import "UIView+ZXTheme.h"
 #import "UILabel+ZXTheme.h"
 #import "NSObject+ZXCustomTheme.h"
+#import "UIView+ZXThemeCache.h"
 
 #import "ZXViewTheme.h"
 #import "ZXLabelTheme.h"
@@ -38,10 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZXTheme : NSObject
 + (instancetype)defaultTheme;
-/**
- 快速设置暗黑模式
- */
-- (void)zx_setDarkTheme;
 /**
  发送主题更新通知
  */

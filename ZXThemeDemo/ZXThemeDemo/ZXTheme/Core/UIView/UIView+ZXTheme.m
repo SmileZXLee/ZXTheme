@@ -35,12 +35,9 @@
 
 - (void)zx_initAction{
     if([ZXTheme defaultTheme].zx_viewThemeBlock){
-        ZXViewTheme *viewTheme = [ZXTheme defaultTheme].zx_viewThemeBlock(self);
-        if(viewTheme && viewTheme.backgroundColor){
-            [self triggerSetTheme_view];
-        }
+        [self triggerSetTheme_view];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(triggerSetTheme_view) name:ZXThemeUpdateNotification object:nil];
     }
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(triggerSetTheme_view) name:ZXThemeUpdateNotification object:nil];
     
 }
 - (void)triggerSetTheme_view{

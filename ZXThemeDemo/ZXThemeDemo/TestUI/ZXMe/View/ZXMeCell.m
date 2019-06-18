@@ -25,6 +25,7 @@
     self.myTitleLabel.text = meModel.title;
     self.iconImgV.image = [UIImage imageNamed:meModel.imageName];
     self.myTitleLabel.textColor = [UIColor redColor];
+    self.myTitleLabel.textAlignment = NSTextAlignmentRight;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

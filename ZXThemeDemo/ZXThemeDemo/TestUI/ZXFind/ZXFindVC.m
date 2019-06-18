@@ -46,11 +46,9 @@
     UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"关闭按钮被点击了");
     }];
-    
     [alertController addAction:cancelAction];
     [alertController addAction:sureAction];
     [alertController addAction:destructiveAction];
-    
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
