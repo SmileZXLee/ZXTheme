@@ -1,0 +1,20 @@
+PODS:
+  - ZXCollectionView (1.0.2)
+  - ZXTableView (1.0.5)
+
+DEPENDENCIES:
+  - ZXCollectionView
+  - ZXTableView
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ZXCollectionView
+    - ZXTableView
+
+SPEC CHECKSUMS:
+  ZXCollectionView: 51629ca1954eaf85b78a6b9e64162178fe4b1323
+  ZXTableView: d2ba4d9331b0331a8402be59b3b294d874e8ed44
+
+PODFILE CHECKSUM: 9f1532d7531588e22e475c7ae9c70f0f58281956
+
+COCOAPODS: 1.6.1

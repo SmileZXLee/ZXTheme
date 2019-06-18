@@ -1,0 +1,17 @@
+//
+//  PrefixHeader.pch
+//  ZXThemeDemo
+//
+//  Created by 李兆祥 on 2019/6/4.
+//  Copyright © 2019 李兆祥. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define AppLightColor UIColorFromRGB(0xa3a3a3)
+#define AppMainColor UIColorFromRGB(0xf2d493)
+
+#import "ZXTableView.h"
+#import "ZXCollectionView.h"
+#endif /* PrefixHeader_pch */
