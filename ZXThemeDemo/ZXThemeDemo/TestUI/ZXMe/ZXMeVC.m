@@ -37,7 +37,7 @@
 
 - (NSMutableArray *)getMeArr{
     NSMutableArray *meArr = [NSMutableArray array];
-    for (int i = 0;i < 40;i++){
+    for (int i = 0;i < 10;i++){
         ZXMeModel *model = [[ZXMeModel alloc]init];
         model.imageName = @"testimage2";
         model.title = [NSString stringWithFormat:@"测试%d",i];

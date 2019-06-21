@@ -7,7 +7,7 @@
 //
 
 #import "ZXNavVC.h"
-
+#import "ZXTheme.h"
 @interface ZXNavVC ()
 
 @end
@@ -16,17 +16,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setNeedsStatusBarAppearanceUpdate) name:ZXThemeUpdateNotification object:nil];
+}
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    
+    return [ZXTheme defaultTheme].zx_darkTheme ?UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

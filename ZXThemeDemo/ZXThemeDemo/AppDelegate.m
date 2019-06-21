@@ -63,7 +63,6 @@
 - (void)initDarkTheme{
     //设置TabBar主题
     [ZXTheme defaultTheme].zx_tabBarThemeBlock  = ^ZXTabBarTheme * _Nonnull(UITabBar * _Nonnull tabBar) {
-        
         ZXTabBarTheme *tabBarTheme = [[ZXTabBarTheme alloc]init];
         tabBarTheme.translucent = NO;
         tabBarTheme.barTintColor = [self getTabbarTintColor];
@@ -111,6 +110,7 @@
         };
         return tableViewTheme;
     };
+    //设置CollectionView主题
     [ZXTheme defaultTheme].zx_collectionViewThemeBlock = ^ZXCollectionViewTheme * _Nonnull(UICollectionView * _Nonnull collectionView) {
         ZXCollectionViewTheme *collectionViewTheme = [[ZXCollectionViewTheme alloc]init];
         collectionViewTheme.backgroundColor = [self getCollectionViewBacColor];
@@ -135,7 +135,7 @@
         };
         return collectionViewTheme;
     };
-    
+    //设置View主题
     [ZXTheme defaultTheme].zx_viewThemeBlock = ^ZXViewTheme * _Nonnull(UIView * _Nonnull view) {
         ZXViewTheme *viewTheme = [[ZXViewTheme alloc]init];
         if([view.nextResponder isKindOfClass:[UIViewController class]]){
@@ -143,6 +143,7 @@
         }
         return viewTheme;
     };
+    //设置Button主题
     [ZXTheme defaultTheme].zx_buttonThemeBlock = ^ZXButtonTheme * _Nonnull(UIButton * _Nonnull button) {
         if([button.currentTitle isEqualToString:@"正常"] || [button.currentTitle isEqualToString:@"暗黑"]){
             ZXButtonTheme *buttonTheme = [[ZXButtonTheme alloc]init];

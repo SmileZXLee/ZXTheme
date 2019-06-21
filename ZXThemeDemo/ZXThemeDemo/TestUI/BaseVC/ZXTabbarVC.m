@@ -58,4 +58,5 @@
     [childVc.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:TabBarTextSize],NSFontAttributeName, AppLightColor,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     [childVc.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:TabBarTextSize],NSFontAttributeName, AppMainColor,NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
 }
+
 @end
