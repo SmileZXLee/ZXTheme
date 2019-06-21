@@ -110,9 +110,13 @@
 - (void)triggerSetTheme{
     [ZXThemeRuntime addThemeTrigger:self];
     [self setTitleColor:self.currentTitleColor forState:self.state];
+    [self setTitleColor:[self titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
     [self setTitleShadowColor:self.currentTitleShadowColor forState:self.state];
+    [self setTitleColor:[self titleShadowColorForState:UIControlStateNormal] forState:UIControlStateNormal];
     [self setImage:self.currentImage forState:self.state];
+    [self setImage:[self imageForState:UIControlStateNormal] forState:UIControlStateNormal];
     [self setBackgroundImage:self.currentBackgroundImage forState:self.state];
+    [self setBackgroundImage:[self backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
     
 }
 

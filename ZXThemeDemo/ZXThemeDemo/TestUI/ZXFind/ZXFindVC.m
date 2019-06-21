@@ -35,20 +35,16 @@
     [collectionView zx_fastWithModel:fastModel];
     collectionView.zxDatas = [self getData];
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定要升级么?" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"弹窗测试" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"否按钮被点击了");
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
     }];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"是按钮被点击了");
-    }];
-    UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"关闭按钮被点击了");
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
     }];
     [alertController addAction:cancelAction];
     [alertController addAction:sureAction];
-    [alertController addAction:destructiveAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 

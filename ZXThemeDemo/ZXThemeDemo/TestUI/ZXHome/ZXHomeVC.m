@@ -25,8 +25,6 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc]init];
     cell.textLabel.text = @"test";
-    cell.textLabel.layer.borderColor = [UIColor blueColor].CGColor;
-    cell.textLabel.layer.borderWidth = 2;
     return cell;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
