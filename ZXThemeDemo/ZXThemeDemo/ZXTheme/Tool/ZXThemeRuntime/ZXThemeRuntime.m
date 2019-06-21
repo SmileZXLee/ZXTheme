@@ -80,7 +80,9 @@
 
 + (void)addThemeTrigger:(id)target{
     id (^themeBlock)(id owner);
-    NSString *themeBlockDec = [NSString stringWithFormat:@"zx_%@ThemeBlock",[NSStringFromClass([target class]) substringFromIndex:2]];
+    NSString *targetName = [NSStringFromClass([target class]) substringFromIndex:2];
+    targetName = [targetName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[targetName substringToIndex:1] lowercaseString]];
+    NSString *themeBlockDec = [NSString stringWithFormat:@"zx_%@ThemeBlock",targetName];
     if([[ZXTheme defaultTheme] respondsToSelector:NSSelectorFromString(themeBlockDec)]){
         themeBlock = [[ZXTheme defaultTheme] valueForKey:themeBlockDec];
     }
@@ -99,8 +101,21 @@
             NSString *propertyName = [NSString stringWithUTF8String: propertyNameChar];
             NSString *proSetStr = [NSString stringWithFormat:@"set%@:",[propertyName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[propertyName substringToIndex:1] capitalizedString]]];
             SEL proSetSel = NSSelectorFromString(proSetStr);
-            if([target respondsToSelector:proSetSel] && [theme respondsToSelector:proSetSel] && [theme valueForKey:propertyName]){
-                [target performSelector:proSetSel withObject:[target valueForKey:propertyName] afterDelay:0];
+            id themeRes = [theme valueForKey:propertyName];
+            if([target respondsToSelector:proSetSel] && [theme respondsToSelector:proSetSel] && themeRes){
+                BOOL trigger = NO;
+                if(themeRes){
+                    if([themeRes isKindOfClass:[NSNumber class]]){
+                        if([themeRes intValue] >= 0){
+                            trigger = YES;
+                        }
+                    }else{
+                        trigger = YES;
+                    }
+                }
+                if(trigger){
+                    [target performSelector:proSetSel withObject:[target valueForKey:propertyName] afterDelay:0];
+                }
             }
         }
         

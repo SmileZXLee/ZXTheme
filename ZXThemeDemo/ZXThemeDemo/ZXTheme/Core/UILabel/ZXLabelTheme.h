@@ -47,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
  设置文字背景颜色
  */
 @property(strong, nonatomic) UIColor *backgroundColor;
+
 @end
 
 NS_ASSUME_NONNULL_END

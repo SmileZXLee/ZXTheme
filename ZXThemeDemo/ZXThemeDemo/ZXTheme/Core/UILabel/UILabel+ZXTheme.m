@@ -81,6 +81,7 @@
     id set = [NSNumber numberWithLongLong:setValue];
     [self zx_setNumberOfLines:[ZXThemeData(ZXThemeTypeLabel) longLongValue]];
 }
+
 - (void)zx_setBackgroundColor:(UIColor *)set{
     if([self shouldIgnoreTheme]){
         [self zx_setBackgroundColor:set];
@@ -88,6 +89,7 @@
     }
     [self zx_setBackgroundColor:ZXThemeData(ZXThemeTypeLabel)];
 }
+
 #pragma mark - UILabelThemeInit
 - (instancetype)zx_initWithCoder:(NSCoder *)aDecoder{
     id selfIns = [self zx_initWithCoder:aDecoder];

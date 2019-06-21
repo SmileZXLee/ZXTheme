@@ -113,6 +113,11 @@
 + (id)handleThemeDataWithThemeValue:(id)themeValue propertyStr:(NSString *)propertyStr{
     NSString *themeKey = [propertyStr substringWithRange:NSMakeRange(3, propertyStr.length - 3 - 1)];
     themeKey = [themeKey stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[themeKey substringToIndex:1] lowercaseString]];
-    return [themeValue valueForKey:themeKey];
+    if([themeValue respondsToSelector:NSSelectorFromString(themeKey)]){
+        return [themeValue valueForKey:themeKey];
+    }else{
+        return nil;
+    }
+    
 }
 @end

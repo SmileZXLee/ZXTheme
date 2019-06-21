@@ -18,7 +18,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self setTheme];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self setDarkTheme];
+    });
+    
     UIWindow *window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     ZXTabbarVC *VC = [[ZXTabbarVC alloc]init];
     window.rootViewController = VC;
@@ -26,8 +29,90 @@
     [self.window makeKeyWindow];
     return YES;
 }
+- (void)setDarkTheme{
+    [ZXTheme defaultTheme].zx_labelThemeBlock = ^ZXLabelTheme * _Nonnull(UILabel * _Nonnull label) {
+        ZXLabelTheme *theme = [[ZXLabelTheme alloc]init];
+        label.layer.borderColor = [UIColor redColor].CGColor;
+        label.layer.borderWidth = 1;
+        return theme;
+    };
+
+    //设置TabBar透明度为不透明，背景色为深灰色0x1c1c1c
+    [ZXTheme defaultTheme].zx_tabBarThemeBlock  = ^ZXTabBarTheme * _Nonnull(UITabBar * _Nonnull tabBar) {
+        
+        ZXTabBarTheme *tabBarTheme = [[ZXTabBarTheme alloc]init];
+        tabBarTheme.translucent = NO;
+        tabBarTheme.barTintColor = ZXThemeDarkLevel2Color;
+        return tabBarTheme;
+    };
+    //设置NavigationBar透明度为不透明，背景色为深灰色0x1c1c1c，设置导航栏的标题颜色为0xffffff
+    [ZXTheme defaultTheme].zx_navigationBarThemeBlock = ^ZXNavigationBarTheme * _Nonnull(UINavigationBar * _Nonnull navigationBar) {
+        ZXNavigationBarTheme *navigationBarTheme  = [[ZXNavigationBarTheme alloc]init];
+        navigationBarTheme.translucent = NO;
+        navigationBarTheme.barTintColor = ZXThemeDarkLevel2Color;
+        NSMutableDictionary *titleTextAttributes = [navigationBar.titleTextAttributes mutableCopy];
+        if(!titleTextAttributes){
+            titleTextAttributes = [NSMutableDictionary dictionary];
+        }
+        [titleTextAttributes setValue:ZXThemeLightLevel2Color forKey:NSForegroundColorAttributeName];
+        navigationBarTheme.titleTextAttributes = titleTextAttributes;
+        return navigationBarTheme;
+    };
+    
+    [ZXTheme defaultTheme].zx_tableViewThemeBlock = ^ZXTableViewTheme * _Nonnull(UITableView * _Nonnull tableView) {
+        ZXTableViewTheme *tableViewTheme = [[ZXTableViewTheme alloc]init];
+        tableViewTheme.separatorStyle = UITableViewCellSeparatorStyleNone;
+        tableViewTheme.backgroundColor = ZXThemeDarkLevel1Color;
+        tableViewTheme.viewForHeaderInSection = ^UIView * _Nonnull(UIView * _Nonnull headerView, NSUInteger section) {
+            headerView.backgroundColor = ZXThemeDarkLevel2Color;
+            return headerView;
+        };
+        tableViewTheme.cellForRowAtIndexPath = ^UITableViewCell * _Nonnull(UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath) {
+            cell.backgroundColor = ZXThemeDarkLevel2Color;
+            for (UIView *view in cell.contentView.subviews) {
+                if([view isKindOfClass:[UILabel class]]){
+                    ((UILabel *)view).textColor = ZXThemeLightLevel2Color;
+                }
+                if([view isKindOfClass:[UIImageView class]]){
+                    ((UIImageView *)view).image = [((UIImageView *)view).image renderColor:ZXThemeLightLevel2Color];
+                }
+            }
+            return cell;
+        };
+        return tableViewTheme;
+    };
+    [ZXTheme defaultTheme].zx_collectionViewThemeBlock = ^ZXCollectionViewTheme * _Nonnull(UICollectionView * _Nonnull collectionView) {
+        ZXCollectionViewTheme *collectionViewTheme = [[ZXCollectionViewTheme alloc]init];
+        collectionViewTheme.backgroundColor = ZXThemeDarkLevel1Color;
+        collectionViewTheme.cellForItemAtIndexPath = ^UICollectionViewCell * _Nonnull(UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath) {
+            cell.backgroundColor = ZXThemeDarkLevel2Color;
+            for (UIView *view in cell.contentView.subviews) {
+                if([view isKindOfClass:[UILabel class]]){
+                    ((UILabel *)view).textColor = ZXThemeLightLevel2Color;
+                }
+            }
+            return cell;
+        };
+        collectionViewTheme.viewForSupplementaryElement = ^UICollectionReusableView * _Nonnull(UICollectionReusableView * _Nonnull reusableView, NSString * _Nonnull kind, NSIndexPath * _Nonnull indexPath) {
+            reusableView.backgroundColor = ZXThemeDarkLevel2Color;
+            return reusableView;
+        };
+        return collectionViewTheme;
+    };
+    
+    [ZXTheme defaultTheme].zx_viewThemeBlock = ^ZXViewTheme * _Nonnull(UIView * _Nonnull view) {
+        ZXViewTheme *viewTheme = [[ZXViewTheme alloc]init];
+        if([view.nextResponder isKindOfClass:[UIViewController class]]){
+            viewTheme.backgroundColor = ZXThemeDarkLevel1Color;
+        }
+        return viewTheme;
+    };
+    [[ZXTheme defaultTheme] zx_themeUpdate];
+}
 
 -(void)setTheme{
+    
+    return;
     [ZXTheme defaultTheme].zx_labelThemeBlock = ^ZXLabelTheme * _Nonnull(UILabel * _Nonnull label) {
         ZXLabelTheme *labelTheme = [[ZXLabelTheme alloc]init];
         labelTheme.textColor = [UIColor blueColor];

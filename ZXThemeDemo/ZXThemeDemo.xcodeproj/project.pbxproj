@@ -21,8 +21,6 @@
 		74533C6422B3DA95005CED69 /* ZXThemeCustomTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74533C6322B3DA95005CED69 /* ZXThemeCustomTool.m */; };
 		74533C6822B77EC3005CED69 /* UIAlertController+ZXCustomTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 74533C6722B77EC2005CED69 /* UIAlertController+ZXCustomTheme.m */; };
 		74533C6B22B77F7D005CED69 /* NSObject+ZXCustomTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 74533C6A22B77F7D005CED69 /* NSObject+ZXCustomTheme.m */; };
-		74533C7E22B88DEA005CED69 /* UIView+ZXThemeCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74533C7D22B88DEA005CED69 /* UIView+ZXThemeCache.m */; };
-		74533C8122B890BE005CED69 /* ZXThemeCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74533C8022B890BE005CED69 /* ZXThemeCache.m */; };
 		74B63DD8229FC1C6000CF158 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B63DD7229FC1C6000CF158 /* AppDelegate.m */; };
 		74B63DDB229FC1C6000CF158 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B63DDA229FC1C6000CF158 /* ViewController.m */; };
 		74B63DDE229FC1C6000CF158 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B63DDC229FC1C6000CF158 /* Main.storyboard */; };
@@ -128,10 +126,6 @@
 		74533C6722B77EC2005CED69 /* UIAlertController+ZXCustomTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+ZXCustomTheme.m"; sourceTree = "<group>"; };
 		74533C6922B77F7D005CED69 /* NSObject+ZXCustomTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZXCustomTheme.h"; sourceTree = "<group>"; };
 		74533C6A22B77F7D005CED69 /* NSObject+ZXCustomTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZXCustomTheme.m"; sourceTree = "<group>"; };
-		74533C7C22B88DEA005CED69 /* UIView+ZXThemeCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ZXThemeCache.h"; sourceTree = "<group>"; };
-		74533C7D22B88DEA005CED69 /* UIView+ZXThemeCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZXThemeCache.m"; sourceTree = "<group>"; };
-		74533C7F22B890BE005CED69 /* ZXThemeCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXThemeCache.h; sourceTree = "<group>"; };
-		74533C8022B890BE005CED69 /* ZXThemeCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZXThemeCache.m; sourceTree = "<group>"; };
 		74B63DD3229FC1C6000CF158 /* ZXThemeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZXThemeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74B63DD6229FC1C6000CF158 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		74B63DD7229FC1C6000CF158 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -383,17 +377,6 @@
 			path = ZXCustomThemeDemo;
 			sourceTree = "<group>";
 		};
-		74533C7B22B88BF2005CED69 /* ZXThemeCache */ = {
-			isa = PBXGroup;
-			children = (
-				74533C7C22B88DEA005CED69 /* UIView+ZXThemeCache.h */,
-				74533C7D22B88DEA005CED69 /* UIView+ZXThemeCache.m */,
-				74533C7F22B890BE005CED69 /* ZXThemeCache.h */,
-				74533C8022B890BE005CED69 /* ZXThemeCache.m */,
-			);
-			path = ZXThemeCache;
-			sourceTree = "<group>";
-		};
 		74B63DCA229FC1C6000CF158 = {
 			isa = PBXGroup;
 			children = (
@@ -529,7 +512,6 @@
 				74533C5F22B3DA26005CED69 /* ZXThemeTool */,
 				74533C6022B3DA46005CED69 /* ZXThemeDefind */,
 				74533C6122B3DA82005CED69 /* ZXThemeCustomTool */,
-				74533C7B22B88BF2005CED69 /* ZXThemeCache */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -990,14 +972,12 @@
 				74533C4D22B37620005CED69 /* ZXFindModel.m in Sources */,
 				74E0EB4822A50569009725BA /* ZXViewTheme.m in Sources */,
 				74E0EB6622A64966009725BA /* ZXHomeVC.m in Sources */,
-				74533C7E22B88DEA005CED69 /* UIView+ZXThemeCache.m in Sources */,
 				74E0EB7822A6CEC6009725BA /* ZXTabBarTheme.m in Sources */,
 				74B63E1F22A00B0D000CF158 /* ZXThemeTool.m in Sources */,
 				74C1671522A7696600913E4B /* UITabBarItem+ZXTheme.m in Sources */,
 				74E0EB0C22A12050009725BA /* UISlider+ZXTheme.m in Sources */,
 				74C1672022A79B4200913E4B /* ZXNavigationBarTheme.m in Sources */,
 				74B63E2E22A0F504000CF158 /* ZXSegmentedControlTheme.m in Sources */,
-				74533C8122B890BE005CED69 /* ZXThemeCache.m in Sources */,
 				74E0EB1D22A1323A009725BA /* ZXActivityIndicatorViewTheme.m in Sources */,
 				74E0EB2822A4ED19009725BA /* UIPageControl+ZXTheme.m in Sources */,
 				74E0EB2122A4E120009725BA /* UIProgressView+ZXTheme.m in Sources */,
