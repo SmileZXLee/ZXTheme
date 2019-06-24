@@ -15,8 +15,7 @@ pod 'ZXTheme'
 ```objective-c
 #import "ZXTheme.h"
 ```
-## 主题设置
-### 说明
+## 说明
 ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel为例：
 * 示例代码
 ```objective-c
@@ -74,8 +73,8 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 *** 
 
-### 所有UI控件主题设置
-#### ZXTheme
+## 所有UI控件主题设置
+### ZXTheme
 ```objective-c
 + (instancetype)defaultTheme;
 /**
@@ -166,7 +165,28 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UILabel
+### UIView
+* 设置view主题
+```objective-c
+[ZXTheme defaultTheme].zx_viewThemeBlock = ^ZXViewTheme * _Nonnull(UIView * _Nonnull view) {
+    ZXViewTheme *viewTheme = [[ZXViewTheme alloc]init];
+    if([view.nextResponder isKindOfClass:[UIViewController class]]){
+        viewTheme.backgroundColor = [self getControllerBacViewColor];
+    }
+    return viewTheme;
+};
+```
+* ZXStepperTheme所有属性
+```objective-c
+/**
+ 设置背景颜色
+ */
+@property(strong, nonatomic) UIColor *backgroundColor;
+```
+
+***
+
+### UILabel
 * 设置label主题
 ```objective-c
 [ZXTheme defaultTheme].zx_labelThemeBlock = ^ZXLabelTheme * _Nonnull(UILabel * _Nonnull label) {
@@ -221,7 +241,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UIButton
+### UIButton
 * 设置button主题
 ```objective-c
 [ZXTheme defaultTheme].zx_buttonThemeBlock = ^ZXButtonTheme * _Nonnull(UIButton * _Nonnull button) {
@@ -315,7 +335,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UISegmentedControl
+### UISegmentedControl
 * 设置segmentedControl主题
 ```objective-c
 [ZXTheme defaultTheme].zx_segmentedControlThemeBlock = ^ZXSegmentedControlTheme * _Nonnull(UISegmentedControl * _Nonnull segmentedControl) {
@@ -338,7 +358,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UITextField
+### UITextField
 * 设置textField主题
 ```objective-c
 [ZXTheme defaultTheme].zx_textFieldThemeBlock = ^ZXTextFieldTheme * _Nonnull(UITextField * _Nonnull textField) {
@@ -379,7 +399,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UISlider
+### UISlider
 * 设置slider主题
 ```objective-c
 [ZXTheme defaultTheme].zx_sliderThemeBlock = ^ZXSliderTheme * _Nonnull(UISlider * _Nonnull slider) {
@@ -420,7 +440,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UISwitch
+### UISwitch
 * 设置switch主题
 ```objective-c
 [ZXTheme defaultTheme].zx_switchThemeBlock = ^ZXSwitchTheme * _Nonnull(UISwitch * _Nonnull mySwitch) {
@@ -448,7 +468,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UIActivityIndicatorView
+### UIActivityIndicatorView
 * 设置activityIndicatorView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_activityIndicatorViewThemeBlock = ^ZXActivityIndicatorViewTheme * _Nonnull(UIActivityIndicatorView * _Nonnull activityIndicatorView) {
@@ -471,7 +491,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UIProgressView
+### UIProgressView
 * 设置progressView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_progressViewThemeBlock = ^ZXProgressViewTheme * _Nonnull(UIProgressView * _Nonnull progressView) {
@@ -503,7 +523,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UIPageControl
+### UIPageControl
 * 设置pageControl主题
 ```objective-c
 [ZXTheme defaultTheme].zx_pageControlThemeBlock = ^ZXPageControlTheme * _Nonnull(UIPageControl * _Nonnull pageControl) {
@@ -527,7 +547,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UIStepper
+### UIStepper
 * 设置stepper主题
 ```objective-c
 [ZXTheme defaultTheme].zx_stepperThemeBlock = ^ZXStepperTheme * _Nonnull(UIStepper * _Nonnull stepper) {
@@ -550,7 +570,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UIImageView
+### UIImageView
 * 设置imageView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_imageViewThemeBlock = ^ZXImageViewTheme * _Nonnull(UIImageView * _Nonnull imageView) {
@@ -610,7 +630,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UITextView
+### UITextView
 * 设置textView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_textViewThemeBlock = ^ZXTextViewTheme * _Nonnull(UITextView * _Nonnull textView) {
@@ -642,7 +662,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UITabBar
+### UITabBar
 * 设置tabBar主题
 ```objective-c
 [ZXTheme defaultTheme].zx_tabBarThemeBlock  = ^ZXTabBarTheme * _Nonnull(UITabBar * _Nonnull tabBar) {
@@ -682,7 +702,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UITabBarItem
+### UITabBarItem
 * 设置tabBarItem主题
 ```objective-c
 [ZXTheme defaultTheme].zx_tabBarItemThemeBlock = ^ZXTabBarItemTheme * _Nonnull(UITabBarItem * _Nonnull tabBarItem) {
@@ -726,7 +746,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UINavigationBar
+### UINavigationBar
 * 设置navigationBar主题
 ```objective-c
 [ZXTheme defaultTheme].zx_navigationBarThemeBlock = ^ZXNavigationBarTheme * _Nonnull(UINavigationBar * _Nonnull navigationBar) {
@@ -763,7 +783,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UIBarButtonItem
+### UIBarButtonItem
 * 设置barButtonItem主题
 ```objective-c
 [ZXTheme defaultTheme].zx_barButtonItemThemeBlock = ^ZXBarButtonItemTheme * _Nonnull(UIBarButtonItem * _Nonnull barButtonItem){
@@ -790,7 +810,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UITableView
+### UITableView
 * 设置tableView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_tableViewThemeBlock = ^ZXTableViewTheme * _Nonnull(UITableView * _Nonnull tableView) {
@@ -880,7 +900,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 
 ***
 
-#### UICollectionView
+### UICollectionView
 * 设置collectionView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_collectionViewThemeBlock = ^ZXCollectionViewTheme * _Nonnull(UICollectionView * _Nonnull collectionView) {
