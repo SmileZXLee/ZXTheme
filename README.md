@@ -74,6 +74,46 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 *** 
 
 ## 所有UI控件主题设置
+### 通用工具函数
+* UIView(Extension)
+```objective-c
+/**
+ 获取view所属的控制器
+
+ @return view所属的控制器
+ */
+- (UIViewController*)zx_getViewController;
+
+/**
+ 判断当前view是否是目标view类的子类(包含子类递归)
+
+ @param cls 目标view的类
+ @return 当前view是否是目标view类的子类(包含子类递归)
+ */
+- (BOOL)zx_inViewClass:(Class)cls;
+```
+* UILabel(Extension)
+```objective-c
+/**
+ 是否属于UIButton
+ */
+@property(assign, nonatomic,readonly) BOOL zx_belongsToBtn;
+
+/**
+ 是否属于UITextField中的placeholder
+ */
+@property(assign, nonatomic,readonly) BOOL zx_belongsToTextFieldPlaceholder;
+```
+* UIImage(Extension)
+```objective-c
+/**
+ 将UIImage渲染为指定颜色
+
+ @param color 渲染颜色
+ @return 渲染之后的UIImage
+ */
+- (UIImage*)renderColor:(UIColor *)color;
+```
 ### ZXTheme
 ```objective-c
 + (instancetype)defaultTheme;
