@@ -15,6 +15,10 @@ pod 'ZXTheme'
 ```objective-c
 #import "ZXTheme.h"
 ```
+## 零侵入实现黑暗模式示例
+* 代码参照Appdelegate.m文件
+
+![Image text](http://www.zxlee.cn/ZXThemeDemo1.gif) 
 ## 说明
 ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel为例：
 * 示例代码
