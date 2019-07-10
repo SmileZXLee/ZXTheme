@@ -991,6 +991,28 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
  */
 @property(copy, nonatomic) UICollectionReusableView *(^viewForSupplementaryElement)(UICollectionReusableView *reusableView,NSString *kind,NSIndexPath *indexPath);
 ```
+### 自定义其他View或属性的主题
+* 例如需要添加UIAlertController的主题设置
+* 创建UIAlertController的分类
+* 在.m文件中实现
+```objective-c
+#import "UIAlertController+ZXCustomTheme.h"
+#import "ZXTheme.h"
+@implementation UIAlertController (ZXCustomTheme)
++ (void)load{
+    [self zx_handleThemeWithTargetSelector:@selector(addAction:) handleSelector:@selector(zx_addAction:)];
+}
+- (void)zx_addAction:(UIAlertAction *)action{
+    [action setValue:[UIColor redColor] forKey:@"titleTextColor"];
+    [self zx_addAction:action];
+}
+@end
+```
+* 以上代码实现将UIAlertController的actions文字颜色变为红色的效果
+
+
+
+
 
 
 
