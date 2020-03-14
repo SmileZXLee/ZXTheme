@@ -15,7 +15,6 @@
 @end
 
 @implementation AppDelegate
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self initDarkTheme];
     UIWindow *window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -30,7 +29,6 @@
 }
 
 
-#pragma mark - NotImportant
 #pragma mark 添加Theme切换按钮
 - (void)addDarkThemeBtn{
     UIButton *darkThemeBtn = [[UIButton alloc]init];
@@ -58,7 +56,7 @@
     
 }
 
-#pragma mark - Theme初始化
+#pragma mark - 设置主题
 - (void)initDarkTheme{
     //设置TabBar主题
     [ZXTheme defaultTheme].zx_tabBarThemeBlock  = ^ZXTabBarTheme * _Nonnull(UITabBar * _Nonnull tabBar) {
@@ -102,7 +100,15 @@
                     ((UILabel *)view).textColor = [self getTableViewCellLabelTextColor];
                 }
                 if([view isKindOfClass:[UIImageView class]]){
-                    ((UIImageView *)view).image = [((UIImageView *)view).image renderColor:[self getTableViewCellImageViewRenderColor]];
+                    //图片渲染建议放在异步线程，然后再在主线程给imageView赋值
+                    UIImage *orgImg = ((UIImageView *)view).image;
+                    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                        UIColor *renderColor = [self getTableViewCellImageViewRenderColor];
+                        UIImage *renderedImg = [orgImg renderColor:renderColor];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            ((UIImageView *)view).image = renderedImg;
+                        });
+                    });
                 }
             }
             return cell;
@@ -137,7 +143,8 @@
     //设置View主题
     [ZXTheme defaultTheme].zx_viewThemeBlock = ^ZXViewTheme * _Nonnull(UIView * _Nonnull view) {
         ZXViewTheme *viewTheme = [[ZXViewTheme alloc]init];
-        if([view.nextResponder isKindOfClass:[UIViewController class]]){
+        //如果是控制器View，则设置它的背景色
+        if([view zx_isControllerView]){
             viewTheme.backgroundColor = [self getControllerBacViewColor];
         }
         return viewTheme;
@@ -330,6 +337,5 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 
 @end

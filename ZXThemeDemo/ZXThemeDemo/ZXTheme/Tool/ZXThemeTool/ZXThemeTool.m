@@ -109,6 +109,68 @@
     return orgSetData;
 }
 
++ (NSString *)zx_uiBaseClassStringWithCls:(Class)cls{
+    if([cls isKindOfClass:[UICollectionView class]]){
+        return NSStringFromClass([UICollectionView class]);
+    }
+    if([cls isKindOfClass:[UITableView class]]){
+        return NSStringFromClass([UITableView class]);
+    }
+    if([cls isKindOfClass:[UIBarButtonItem class]]){
+        return NSStringFromClass([UIBarButtonItem class]);
+    }
+    if([cls isKindOfClass:[UINavigationBar class]]){
+        return NSStringFromClass([UINavigationBar class]);
+    }
+    if([cls isKindOfClass:[UITabBarItem class]]){
+        return NSStringFromClass([UITabBarItem class]);
+    }
+    if([cls isKindOfClass:[UITabBar class]]){
+        return NSStringFromClass([UITabBar class]);
+    }
+    if([cls isKindOfClass:[UITextView class]]){
+        return NSStringFromClass([UITextView class]);
+    }
+    if([cls isKindOfClass:[UIImage class]]){
+        return NSStringFromClass([UIImage class]);
+    }
+    if([cls isKindOfClass:[UIImageView class]]){
+        return NSStringFromClass([UIImageView class]);
+    }
+    if([cls isKindOfClass:[UIStepper class]]){
+        return NSStringFromClass([UIStepper class]);
+    }
+    if([cls isKindOfClass:[UIPageControl class]]){
+        return NSStringFromClass([UIPageControl class]);
+    }
+    if([cls isKindOfClass:[UIProgressView class]]){
+        return NSStringFromClass([UIProgressView class]);
+    }
+    if([cls isKindOfClass:[UIActivityIndicatorView class]]){
+        return NSStringFromClass([UIActivityIndicatorView class]);
+    }
+    if([cls isKindOfClass:[UISlider class]]){
+        return NSStringFromClass([UISlider class]);
+    }
+    if([cls isKindOfClass:[UITextField class]]){
+        return NSStringFromClass([UITextField class]);
+    }
+    if([cls isKindOfClass:[UISegmentedControl class]]){
+        return NSStringFromClass([UISegmentedControl class]);
+    }
+    if([cls isKindOfClass:[UIButton class]]){
+        return NSStringFromClass([UIButton class]);
+    }
+    if([cls isKindOfClass:[UILabel class]]){
+        return NSStringFromClass([UILabel class]);
+    }
+    if([cls isKindOfClass:[UIView class]]){
+        return NSStringFromClass([UIView class]);
+    }
+    return nil;
+}
+
+
 #pragma mark - Private
 + (id)handleThemeDataWithThemeValue:(id)themeValue propertyStr:(NSString *)propertyStr{
     NSString *themeKey = [propertyStr substringWithRange:NSMakeRange(3, propertyStr.length - 3 - 1)];
@@ -120,4 +182,5 @@
     }
     
 }
+
 @end

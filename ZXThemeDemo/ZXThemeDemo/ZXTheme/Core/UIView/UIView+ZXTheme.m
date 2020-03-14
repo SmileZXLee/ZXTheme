@@ -66,4 +66,7 @@
     return NO;
 }
 
+- (BOOL)zx_isControllerView{
+    return [self.nextResponder isKindOfClass:[UIViewController class]] && ![self.nextResponder isKindOfClass:NSClassFromString(@"UIInputWindowController")];
+}
 @end

@@ -26,6 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
  @return 当前view是否是目标view类的子类(包含子类递归)
  */
 - (BOOL)zx_inViewClass:(Class)cls;
+
+
+/**
+ 是否是控制器的self.view
+
+ @return 是否是控制器的self.view
+ */
+- (BOOL)zx_isControllerView;
 @end
 
 NS_ASSUME_NONNULL_END

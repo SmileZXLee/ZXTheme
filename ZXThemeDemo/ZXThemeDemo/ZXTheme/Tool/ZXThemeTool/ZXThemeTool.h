@@ -34,6 +34,7 @@ typedef enum {
 }ZXThemeType;
 @interface ZXThemeTool : NSObject
 + (id)zx_getThemeWithPropertyStr:(NSString *)propertyStr themeInstance:(id)themeInstance orgSetData:(id)orgSetData themeType:(ZXThemeType)themeType;
++ (NSString *)zx_uiBaseClassStringWithCls:(Class)cls;
 @end
 
 NS_ASSUME_NONNULL_END

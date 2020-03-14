@@ -46,6 +46,7 @@
     [alertController addAction:cancelAction];
     [alertController addAction:sureAction];
     [self presentViewController:alertController animated:YES completion:nil];
+    
 }
 
 -(NSMutableArray *)getData{

@@ -17,6 +17,9 @@ static NSMutableArray *hookedTargetClassArr;
 }
 
 - (void)zx_setDataSource:(id)set{
+    if(!set){
+        return;
+    }
     Class cls = [set class];
     NSString *clsStr = NSStringFromClass(cls);
     if([clsStr hasPrefix:@"_UI"]){

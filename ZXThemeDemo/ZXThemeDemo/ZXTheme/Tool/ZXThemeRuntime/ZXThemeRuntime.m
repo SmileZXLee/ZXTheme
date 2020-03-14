@@ -8,6 +8,7 @@
 
 #import "ZXThemeRuntime.h"
 #import "ZXTheme.h"
+#import "ZXThemeTool.h"
 #import <UIKit/UIKit.h>
 #import <objc/message.h>
 
@@ -79,8 +80,9 @@
 }
 
 + (void)addThemeTrigger:(id)target{
+    NSString *baseClassStr = [ZXThemeTool zx_uiBaseClassStringWithCls:target];
     id (^themeBlock)(id owner);
-    NSString *targetName = [NSStringFromClass([target class]) substringFromIndex:2];
+    NSString *targetName = [baseClassStr substringFromIndex:2];
     targetName = [targetName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[targetName substringToIndex:1] lowercaseString]];
     NSString *themeBlockDec = [NSString stringWithFormat:@"zx_%@ThemeBlock",targetName];
     if([[ZXTheme defaultTheme] respondsToSelector:NSSelectorFromString(themeBlockDec)]){
@@ -90,7 +92,7 @@
         return;
     }
     id theme = themeBlock(target);
-    NSString *themeClassStr = [NSString stringWithFormat:@"ZX%@Theme",[NSStringFromClass([target class]) substringFromIndex:2]];
+    NSString *themeClassStr = [NSString stringWithFormat:@"ZX%@Theme",[baseClassStr substringFromIndex:2]];
     Class themeClass = NSClassFromString(themeClassStr);
     if(themeClass){
         u_int proCount;
