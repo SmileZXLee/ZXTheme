@@ -67,6 +67,19 @@
 }
 
 - (BOOL)zx_isControllerView{
-    return [self.nextResponder isKindOfClass:[UIViewController class]] && ![self.nextResponder isKindOfClass:NSClassFromString(@"UIInputWindowController")];
+    if(!self.nextResponder || ![self.nextResponder isKindOfClass:[UIViewController class]]){
+        return false;
+    }
+    BOOL isControllerView = false;
+    NSString *nextResponderStr = NSStringFromClass([self.nextResponder class]);
+    if([nextResponderStr hasPrefix:@"UI"] || [nextResponderStr hasPrefix:@"_UI"]){
+        if([nextResponderStr isEqualToString:@"UIViewController"]){
+            isControllerView = YES;
+        }
+    }else{
+        isControllerView = YES;
+    }
+    return isControllerView;
 }
+
 @end

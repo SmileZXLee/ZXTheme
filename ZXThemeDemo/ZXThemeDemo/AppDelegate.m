@@ -145,6 +145,7 @@
         ZXViewTheme *viewTheme = [[ZXViewTheme alloc]init];
         //如果是控制器View，则设置它的背景色
         if([view zx_isControllerView]){
+            NSLog(@"%@",view.nextResponder);
             viewTheme.backgroundColor = [self getControllerBacViewColor];
         }
         return viewTheme;
