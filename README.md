@@ -16,11 +16,11 @@ pod 'ZXTheme'
 #import "ZXTheme.h"
 ```
 ## 零侵入实现黑暗模式示例
-* 代码参照Appdelegate.m文件
+* 代码参照`Appdelegate.m`文件
 
 ![Image text](http://www.zxlee.cn/ZXThemeDemo1.gif) 
 ## 说明
-ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel为例：
+`ZXTheme`用于修改全局UI的主题，设置方法与注意点说明以UILabel为例：
 * 示例代码
 ```objective-c
 [ZXTheme defaultTheme].zx_labelThemeBlock = ^ZXLabelTheme * _Nonnull(UILabel * _Nonnull label) {
@@ -30,7 +30,7 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return labelTheme;
 };
 ```
-* 说明：我们需要修改全局label的主题，则书写[ZXTheme defaultTheme].zx_labelThemeBlock
+* 说明：我们需要修改全局label的主题，则书写`[ZXTheme defaultTheme].zx_labelThemeBlock`
 * 这个block中有一个label对象，代表当前需要设置主题的label
 * 这个block需要一个返回值，在设置label主题的block中，这个返回值是ZXLabelTheme对象，创建这个对象，并更改其中的属性即可更改对应的label主题
 * 下方示例代码实现将所有文字内容为“测试”的label文字颜色设置为绿色，其他label的文字颜色不变
@@ -68,9 +68,9 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
 };
 ```
 * 由上方三段示例代码可以得出以下规律：  
-1.themeblock返回值为nil，则代表当前label对象不设置主题  
-2.ZXLabelTheme对象中属性没有设置，则代表当前label对象中对应属性不设置主题  
-3.ZXLabelTheme对象中属性有值，则当前label对象中对应属性用ZXLabelTheme对象的对应属性值，例如labelTheme.textColor有值，则label的textColor为labelTheme.textColor，否则label的textColor为label本身的textColor  
+1.`themeblock`返回值为nil，则代表当前label对象不设置主题  
+2.`ZXLabelTheme`对象中属性没有设置，则代表当前label对象中对应属性不设置主题  
+3.`ZXLabelTheme`对象中属性有值，则当前label对象中对应属性用`ZXLabelTheme`对象的对应属性值，例如`labelTheme.textColor`有值，则label的textColor为`labelTheme.textColor`，否则label的textColor为label本身的textColor  
 * 注意：ZXTheme中设置的主题拥有最高的管理权限，也就意味着，若您在ZXTheme中设置了对应UI控件的主题，则您在其他地方都无法更改对应UI控件的主题
 
 以上是相关注意点和使用技巧说明，设置其他UI控件主题同理，因此下方不再赘述
@@ -124,98 +124,30 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
  */
 - (UIImage*)renderColor:(UIColor *)color;
 ```
-### ZXTheme
-```objective-c
-+ (instancetype)defaultTheme;
-/**
- 是否是暗黑主题
- */
-@property(assign, nonatomic, getter=zx_isDarkTheme)BOOL zx_darkTheme;
-/**
- 发送主题更新通知
- */
-- (void)zx_themeUpdate;
-/**
- 设置UIView的主题
- */
-@property(copy, nonatomic)ZXViewTheme *(^zx_viewThemeBlock)(UIView *view);
-/**
- 设置UILabel的主题
- */
-@property(copy, nonatomic)ZXLabelTheme *(^zx_labelThemeBlock)(UILabel *label);
-/**
- 设置UIButton的主题
- */
-@property(copy, nonatomic)ZXButtonTheme *(^zx_buttonThemeBlock)(UIButton *button);
-/**
- 设置UISegmentedControl的主题
- */
-@property(copy, nonatomic)ZXSegmentedControlTheme *(^zx_segmentedControlThemeBlock)(UISegmentedControl *segmentedControl);
-/**
- 设置UITextField的主题
- */
-@property(copy, nonatomic)ZXTextFieldTheme *(^zx_textFieldThemeBlock)(UITextField *textField);
-/**
- 设置UISlider的主题
- */
-@property(copy, nonatomic)ZXSliderTheme *(^zx_sliderThemeBlock)(UISlider *slider);
-/**
- 设置UISwitch的主题
- */
-@property(copy, nonatomic)ZXSwitchTheme *(^zx_switchThemeBlock)(UISwitch *mySwitch);
-/**
- 设置UIActivityIndicatorView的主题
- */
-@property(copy, nonatomic)ZXActivityIndicatorViewTheme *(^zx_activityIndicatorViewThemeBlock)(UIActivityIndicatorView *activityIndicatorView);
-/**
- 设置UIProgressView的主题
- */
-@property(copy, nonatomic)ZXProgressViewTheme *(^zx_progressViewThemeBlock)(UIProgressView *progressView);
-/**
- 设置UIPageControl的主题
- */
-@property(copy, nonatomic)ZXPageControlTheme *(^zx_pageControlThemeBlock)(UIPageControl *pageControl);
-/**
- 设置UIStepper的主题
- */
-@property(copy, nonatomic)ZXStepperTheme *(^zx_stepperThemeBlock)(UIStepper *stepper);
-/**
- 设置UIImageView的主题
- */
-@property(copy, nonatomic)ZXImageViewTheme *(^zx_imageViewThemeBlock)(UIImageView *imageView);
-/**
- 设置UITextView的主题
- */
-@property(copy, nonatomic)ZXTextViewTheme *(^zx_textViewThemeBlock)(UITextView *textView);
-/**
- 设置UITabBar的主题
- */
-@property(copy, nonatomic)ZXTabBarTheme *(^zx_tabBarThemeBlock)(UITabBar *tabBar);
-/**
- 设置UITabBarItem的主题
- */
-@property(copy, nonatomic)ZXTabBarItemTheme *(^zx_tabBarItemThemeBlock)(UITabBarItem *tabBarItem);
-/**
- 设置UINavigationBar的主题
- */
-@property(copy, nonatomic)ZXNavigationBarTheme *(^zx_navigationBarThemeBlock)(UINavigationBar *navigationBar);
-/**
- 设置UIBarButtonItem的主题
- */
-@property(copy, nonatomic)ZXBarButtonItemTheme *(^zx_barButtonItemThemeBlock)(UIBarButtonItem *barButtonItem);
-/**
- 设置UITableView的主题
- */
-@property(copy, nonatomic)ZXTableViewTheme *(^zx_tableViewThemeBlock)(UITableView *tableView);
-/**
- 设置UICollectionView的主题
- */
-@property(copy, nonatomic)ZXCollectionViewTheme *(^zx_collectionViewThemeBlock)(UICollectionView *collectionView);
-```
-
+### ZXTheme支持设置全局主题的View
+* [UIView](#UIView)
+* [UILabel](#UILabel)
+* [UIButton](#UIButton)
+* [UISegmentedControl](#UISegmentedControl)
+* [UITextField](#UITextField)
+* [UISlider](#UISlider)
+* [UISwitch](#UISwitch)
+* [UIActivityIndicatorView](#UIActivityIndicatorView)
+* [UIProgressView](#UIProgressView)
+* [UIPageControl](#UIPageControl)
+* [UIStepper](#UIStepper)
+* [UIImageView](#UIImageView)
+* [UITextView](#UITextView)
+* [UITabBar](#UITabBar)
+* [UITabBarItem](#UITabBarItem)
+* [UINavigationBar](#UINavigationBar)
+* [UIBarButtonItem](#UIBarButtonItem)
+* [UITableView](#UITableView)
+* [UICollectionView](#UICollectionView)
+* [自定义其他View或属性的主题](#custom)
 ***
 
-### UIView
+### <a id="UIView"></a>UIView
 * 设置view主题
 ```objective-c
 [ZXTheme defaultTheme].zx_viewThemeBlock = ^ZXViewTheme * _Nonnull(UIView * _Nonnull view) {
@@ -226,17 +158,17 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return viewTheme;
 };
 ```
-* ZXStepperTheme所有属性
-```objective-c
-/**
- 设置背景颜色
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-```
+* `ZXViewTheme`所有属性  
+
+|      属性       |       描述       |
+| :-------------: | :--------------: |
+| backgroundColor | 设置view背景颜色 |
+
+
 
 ***
 
-### UILabel
+### <a id="UILabel"></a>UILabel
 * 设置label主题
 ```objective-c
 [ZXTheme defaultTheme].zx_labelThemeBlock = ^ZXLabelTheme * _Nonnull(UILabel * _Nonnull label) {
@@ -249,49 +181,25 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return labelTheme;
 };
 ```
-* ZXLabelTheme所有属性
-```objective-c
-/**
- 设置文字颜色
- */
-@property(strong, nonatomic) UIColor *textColor;
-/**
- 设置文字字体
- */
-@property(strong, nonatomic) UIFont *font;
-/**
- 设置文字对齐方式
- */
-@property(assign, nonatomic) NSTextAlignment textAlignment;
-/**
- 设置文字换行模式
- */
-@property(assign, nonatomic) NSLineBreakMode lineBreakMode;
-/**
- 设置文字是否高亮
- */
-@property(assign, nonatomic) BOOL highlighted;
-/**
- 设置文字高亮时候的颜色
- */
-@property(strong, nonatomic) UIColor *highlightedTextColor;
-/**
- 设置文字是否根据宽度自动调整字体
- */
-@property(assign, nonatomic) BOOL adjustsFontSizeToFitWidth;
-/**
- 设置文字最大行数
- */
-@property(assign, nonatomic) long long numberOfLines;
-/**
- 设置文字背景颜色
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-```
+* `ZXLabelTheme`所有属性  
+
+|           属性            |               描述               |
+| :-----------------------: | :------------------------------: |
+|         textColor         |           设置文字颜色           |
+|           font            |           设置文字字体           |
+|       textAlignment       |         设置文字对齐方式         |
+|       lineBreakMode       |         设置文字换行模式         |
+|        highlighted        |         设置文字是否高亮         |
+|   highlightedTextColor    |      设置文字高亮时候的颜色      |
+| adjustsFontSizeToFitWidth | 设置文字是否根据宽度自动调整字体 |
+|       numberOfLines       |         设置文字最大行数         |
+|      backgroundColor      |         设置文字背景颜色         |
+
+
 
 ***
 
-### UIButton
+### <a id="UIButton"></a>UIButton
 * 设置button主题
 ```objective-c
 [ZXTheme defaultTheme].zx_buttonThemeBlock = ^ZXButtonTheme * _Nonnull(UIButton * _Nonnull button) {
@@ -302,90 +210,22 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return buttonTheme;
 };
 ```
-* ZXButtonTheme所有属性
-```objective-c
-/**
- 设置按钮tintColor
- */
-@property(strong, nonatomic) UIColor *tintColor;
-/**
- 根据状态设置按钮文字颜色
- 
- @param color 按钮文字颜色
- @param state 按钮状态
- */
-- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
-/**
- 按钮文字颜色与状态映射的字典
- */
-@property(strong, nonatomic,readonly) NSMutableDictionary *titleColorMapper;
+* ZXButtonTheme所有属性/方法
 
-/**
- 根据状态设置按钮文字阴影颜色
- 
- @param color 文字阴影颜色
- @param state 按钮状态
- */
-- (void)setTitleShadowColor:(UIColor *)color forState:(UIControlState)state;
-/**
- 按钮文字阴影颜色与状态映射的字典
- */
-@property(strong, nonatomic,readonly) NSMutableDictionary *titleShadowColorMapper;
-/**
- 根据状态设置按钮图片
- 
- @param image 按钮图片
- @param state 按钮状态
- */
-- (void)setImage:(UIImage *)image forState:(UIControlState)state;
-/**
- 按钮图片与状态映射的字典
- */
-@property(strong, nonatomic,readonly) NSMutableDictionary *imageMapper;
-/**
- 根据状态设置按钮背景图片
- 
- @param image 按钮背景图片
- @param state 按钮状态
- */
-- (void)setBackgroundImage:(UIImage *)image forState:(UIControlState)state;
-/**
- 按钮背景图片与状态映射的字典
- */
-@property(strong, nonatomic,readonly) NSMutableDictionary *backgroundImageMapper;
-/**
- 根据状态设置按钮图片颜色
- 
- @param color 按钮图片颜色
- @param state 按钮状态
- */
-- (void)setImageColor:(UIColor *)color forState:(UIControlState)state;
-/**
- 按钮图片颜色与状态映射的字典
- */
-@property(strong, nonatomic,readonly) NSMutableDictionary *imageColorMapper;
+|             属性/方法             |             描述             |
+| :-------------------------------: | :--------------------------: |
+|             tintColor             |      设置按钮tintColor       |
+|      setTitleColor:forState:      |   根据状态设置按钮文字颜色   |
+|   setTitleShadowColor:forState:   | 根据状态设置按钮文字阴影颜色 |
+|         setImage:forState         |     根据状态设置按钮图片     |
+| setBackgroundImageColor::forState |   根据状态设置按钮背景图片   |
+|          backgroundColor          |       设置按钮背景颜色       |
 
-/**
- 根据状态设置按钮背景图片颜色
- 
- @param color 按钮背景图片颜色
- @param state 按钮状态
- */
-- (void)setBackgroundImageColor:(UIColor *)color forState:(UIControlState)state;
-/**
- 按钮背景图片颜色与状态映射的字典
- */
-@property(strong, nonatomic,readonly) NSMutableDictionary *backgroundImageColorMapper;
 
-/**
- 设置按钮背景颜色
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-```
 
 ***
 
-### UISegmentedControl
+### <a id="UISegmentedControl"></a>UISegmentedControl
 * 设置segmentedControl主题
 ```objective-c
 [ZXTheme defaultTheme].zx_segmentedControlThemeBlock = ^ZXSegmentedControlTheme * _Nonnull(UISegmentedControl * _Nonnull segmentedControl) {
@@ -394,21 +234,18 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return segmentedControlTheme;
 };
 ```
-* ZXSegmentedControlTheme所有属性
-```objective-c
-/**
- 设置SegmentedControl的tintColor
- */
-@property(strong, nonatomic) UIColor *tintColor;
-/**
- 设置SegmentedControl的背景颜色
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-```
+* `ZXSegmentedControlTheme`所有属性  
+
+|    属性   |              描述               |
+| :-------------: | :-----------------------------: |
+|    tintColor    | 设置SegmentedControl的tintColor |
+| backgroundColor | 设置SegmentedControl的背景颜色  |
+
+
 
 ***
 
-### UITextField
+### <a id="UITextField"></a>UITextField
 * 设置textField主题
 ```objective-c
 [ZXTheme defaultTheme].zx_textFieldThemeBlock = ^ZXTextFieldTheme * _Nonnull(UITextField * _Nonnull textField) {
@@ -419,37 +256,22 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return textFieldTheme;
 };
 ```
-* ZXTextFieldTheme所有属性
-```objective-c
-/**
- 设置TextField颜色
- */
-@property(strong, nonatomic) UIColor *textColor;
-/**
- 设置TextField字体
- */
-@property(strong, nonatomic) UIFont *font;
-/**
- 设置TextField对齐方式
- */
-@property(assign, nonatomic) NSTextAlignment textAlignment;
-/**
- 设置TextField的tintColor
- */
-@property(strong, nonatomic) UIColor *tintColor;
-/**
- 设置TextField的placeholder颜色
- */
-@property(strong, nonatomic) UIColor *placeholderColor;
-/**
- 设置TextField的背景颜色
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-```
+* ZXTextFieldTheme所有属性  
+
+|    属性     |              描述              |
+| :--------------: | :----------------------------: |
+|    textColor     |       设置TextField颜色        |
+|       font       |       设置TextField字体        |
+|  textAlignment   |     设置TextField对齐方式      |
+|    tintColor     |    设置TextField的tintColor    |
+| placeholderColor | 设置TextField的placeholder颜色 |
+| backgroundColor  |    设置TextField的背景颜色     |
+
+
 
 ***
 
-### UISlider
+### <a id="UISlider"></a>UISlider
 * 设置slider主题
 ```objective-c
 [ZXTheme defaultTheme].zx_sliderThemeBlock = ^ZXSliderTheme * _Nonnull(UISlider * _Nonnull slider) {
@@ -460,37 +282,22 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return sliderTheme;
 };
 ```
-* ZXSliderTheme所有属性
-```objective-c
-/**
- 设置Slider左侧背景颜色
- */
-@property(strong, nonatomic) UIColor *minimumTrackTintColor;
-/**
- 设置Slider右侧背景颜色
- */
-@property(strong, nonatomic) UIColor *maximumTrackTintColor;
-/**
- 设置Slider滑块颜色
- */
-@property(strong, nonatomic) UIColor *thumbTintColor;
-/**
- 设置Slider左侧图片
- */
-@property(strong, nonatomic) UIImage *minimumValueImage;
-/**
- 设置Slider右侧图片
- */
-@property(strong, nonatomic) UIImage *maximumValueImage;
-/**
- 设置Slider背景颜色
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-```
+* `ZXSliderTheme`所有属性  
+
+|       属性       |          描述          |
+| :-------------------: | :--------------------: |
+| minimumTrackTintColor | 设置Slider左侧背景颜色 |
+| maximumTrackTintColor | 设置Slider右侧背景颜色 |
+|    thumbTintColor     |   设置Slider滑块颜色   |
+|   minimumValueImage   |   设置Slider左侧图片   |
+|   maximumValueImage   |   设置Slider右侧图片   |
+|    backgroundColor    |   设置Slider背景颜色   |
+
+
 
 ***
 
-### UISwitch
+### <a id="UISwitch"></a>UISwitch
 * 设置switch主题
 ```objective-c
 [ZXTheme defaultTheme].zx_switchThemeBlock = ^ZXSwitchTheme * _Nonnull(UISwitch * _Nonnull mySwitch) {
@@ -500,25 +307,19 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return switchTheme;
 };
 ```
-* ZXSwitchTheme所有属性
-```objective-c
-/**
- 设置Switch的tintColor
- */
-@property(strong, nonatomic) UIColor *tintColor;
-/**
- 设置Switch的onTintColor
- */
-@property(strong, nonatomic) UIColor *onTintColor;
-/**
- 设置Switch背景颜色
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-```
+* `ZXSwitchTheme`所有属性  
+
+|    属性    |          描述           |
+| :-------------: | :---------------------: |
+|    tintColor    |  设置Switch的tintColor  |
+|   onTintColor   | 设置Switch的onTintColor |
+| backgroundColor |   设置Switch背景颜色    |
+
+
 
 ***
 
-### UIActivityIndicatorView
+### <a id="UIActivityIndicatorView"></a>UIActivityIndicatorView
 * 设置activityIndicatorView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_activityIndicatorViewThemeBlock = ^ZXActivityIndicatorViewTheme * _Nonnull(UIActivityIndicatorView * _Nonnull activityIndicatorView) {
@@ -527,21 +328,18 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return activityIndicatorViewTheme;
 };
 ```
-* ZXActivityIndicatorViewTheme所有属性
-```objective-c
-/**
- 设置ActivityIndicatorView样式
- */
-@property(assign, nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
-/**
- 设置ActivityIndicatorView背景颜色
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-```
+* ZXActivityIndicatorViewTheme所有属性  
+
+|         属性          |             描述              |
+| :------------------------: | :---------------------------: |
+| activityIndicatorViewStyle | 设置ActivityIndicatorView样式 |
+|      backgroundColor       |      设置Switch背景颜色       |
+
+
 
 ***
 
-### UIProgressView
+### <a id="UIProgressView"></a>UIProgressView
 * 设置progressView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_progressViewThemeBlock = ^ZXProgressViewTheme * _Nonnull(UIProgressView * _Nonnull progressView) {
@@ -551,29 +349,20 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return progressViewTheme;
 };
 ```
-* ZXProgressViewTheme所有属性
-```objective-c
-/**
- 设置ProgressView已加载的进度条颜色
- */
-@property(strong, nonatomic) UIColor *progressTintColor;
-/**
- 设置ProgressView未加载的进度条颜色
- */
-@property(strong, nonatomic) UIColor *trackTintColor;
-/**
- 设置ProgressView已加载的进度条图片
- */
-@property(strong, nonatomic) UIImage *progressImage;
-/**
- 设置ProgressView未加载的进度条图片
- */
-@property(strong, nonatomic) UIColor *trackImage;
-```
+* `ZXProgressViewTheme`所有属性  
+
+|             属性              |            描述             |
+| :---------------: | :--------------------------------: |
+| progressTintColor | 设置ProgressView已加载的进度条颜色 |
+|  trackTintColor   | 设置ProgressView未加载的进度条颜色 |
+|   progressImage   | 设置ProgressView已加载的进度条图片 |
+|    trackImage     | 设置ProgressView未加载的进度条图片 |
+
+
 
 ***
 
-### UIPageControl
+### <a id="UIPageControl"></a>UIPageControl
 * 设置pageControl主题
 ```objective-c
 [ZXTheme defaultTheme].zx_pageControlThemeBlock = ^ZXPageControlTheme * _Nonnull(UIPageControl * _Nonnull pageControl) {
@@ -583,21 +372,19 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return pageControlTheme;
 };
 ```
-* ZXPageControlTheme所有属性
-```objective-c
-/**
- 设置PageControl其他页的颜色
- */
-@property(strong, nonatomic) UIColor *pageIndicatorTintColor;
-/**
- 设置PageControl当前页的颜色
- */
-@property(strong, nonatomic) UIColor *currentPageIndicatorTintColor;
-```
+* `ZXPageControlTheme`所有属性  
+
+
+|             属性              |            描述             |
+| :---------------------------: | :-------------------------: |
+|    pageIndicatorTintColor     | 设置PageControl其他页的颜色 |
+| currentPageIndicatorTintColor | 设置PageControl当前页的颜色 |
+
+
 
 ***
 
-### UIStepper
+### <a id="UIStepper"></a>UIStepper
 * 设置stepper主题
 ```objective-c
 [ZXTheme defaultTheme].zx_stepperThemeBlock = ^ZXStepperTheme * _Nonnull(UIStepper * _Nonnull stepper) {
@@ -606,21 +393,18 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return stepperTheme;
 };
 ```
-* ZXStepperTheme所有属性
-```objective-c
-/**
- 设置Stepper的tintColor
- */
-@property(strong, nonatomic) UIColor *tintColor;
-/**
- 设置Stepper背景颜色
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-```
+* `ZXStepperTheme`所有属性  
+
+|      属性       |          描述          |
+| :-------------: | :--------------------: |
+|    tintColor    | 设置Stepper的tintColor |
+| backgroundColor |  设置Stepper背景颜色   |
+
+
 
 ***
 
-### UIImageView
+### <a id="UIImageView"></a>UIImageView
 * 设置imageView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_imageViewThemeBlock = ^ZXImageViewTheme * _Nonnull(UIImageView * _Nonnull imageView) {
@@ -634,53 +418,26 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     }
 };
 ```
-* ZXImageViewTheme所有属性
-```objective-c
-/**
- 设置ImageView的image
- */
-@property(strong, nonatomic) UIImage *image;
-/**
- 设置ImageView的image颜色
- */
-@property(strong, nonatomic) UIColor *imageColor;
-/**
- 设置ImageView的highlightedImage
- */
-@property(strong, nonatomic) UIImage *highlightedImage;
-/**
- 设置ImageView的highlightedImage颜色
- */
-@property(strong, nonatomic) UIColor *highlightedImageColor;
-/**
- 设置ImageView的动画image数组
- */
-@property(strong, nonatomic) NSArray *animationImages;
-/**
- 设置ImageView的image数组的颜色
- */
-@property(strong, nonatomic) UIColor *animationImagesColor;
-/**
- 设置ImageView的动画highlightedImage数组
- */
-@property(strong, nonatomic) NSArray *highlightedAnimationImages;
-/**
- 设置ImageView的highlightedAnimationImages数组的颜色
- */
-@property(strong, nonatomic) UIColor *highlightedAnimationImagesColor;
-/**
- 设置ImageView的tintColor
- */
-@property(strong, nonatomic) UIColor *tintColor;
-/**
- 设置ImageView背景颜色
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-```
+* `ZXImageViewTheme`所有属性  
+
+|              属性               |                        描述                         |
+| :-----------------------------: | :-------------------------------------------------: |
+|              image              |                设置ImageView的image                 |
+|           imageColor            |              设置ImageView的image颜色               |
+|        highlightedImage         |           设置ImageView的highlightedImage           |
+|      highlightedImageColor      |         设置ImageView的highlightedImage颜色         |
+|         animationImages         |            设置ImageView的动画image数组             |
+|      animationImagesColor       |           设置ImageView的image数组的颜色            |
+|   highlightedAnimationImages    |       设置ImageView的动画highlightedImage数组       |
+| highlightedAnimationImagesColor | 设置ImageView的highlightedAnimationImages数组的颜色 |
+|            tintColor            |              设置ImageView的tintColor               |
+|         backgroundColor         |                设置ImageView背景颜色                |
+
+
 
 ***
 
-### UITextView
+### <a id="UITextView"></a>UITextView
 * 设置textView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_textViewThemeBlock = ^ZXTextViewTheme * _Nonnull(UITextView * _Nonnull textView) {
@@ -690,29 +447,20 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return textViewTheme;
 };
 ```
-* ZXTextViewTheme所有属性
-```objective-c
-/**
- 设置文字颜色
- */
-@property(strong, nonatomic) UIColor *textColor;
-/**
- 设置文字字体
- */
-@property(strong, nonatomic) UIFont *font;
-/**
- 设置文字对齐方式
- */
-@property(assign, nonatomic) NSTextAlignment textAlignment;
-/**
- 设置背景颜色
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-```
+* `ZXTextViewTheme`所有属性  
+
+|      属性       |            描述            |
+| :-------------: | :------------------------: |
+|    textColor    |   设置TextView的文字颜色   |
+|      font       |   设置TextView的文字字体   |
+|  textAlignment  | 设置TextView的文字对齐方式 |
+| backgroundColor |   设置TextView的背景颜色   |
+
+
 
 ***
 
-### UITabBar
+### <a id="UITabBar"></a>UITabBar
 * 设置tabBar主题
 ```objective-c
 [ZXTheme defaultTheme].zx_tabBarThemeBlock  = ^ZXTabBarTheme * _Nonnull(UITabBar * _Nonnull tabBar) {
@@ -722,37 +470,22 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return tabBarTheme;
 };
 ```
-* ZXTabBarTheme所有属性
-```objective-c
-/**
- 设置Tabbar的tintColor
- */
-@property(strong, nonatomic) UIColor *tintColor;
-/**
- 设置Tabbar是否透明
- */
-@property(assign, nonatomic) BOOL translucent;
-/**
- 设置Tabbar的背景色
- */
-@property(strong, nonatomic) UIColor *barTintColor;
-/**
- 设置Tabbar的背景图片
- */
-@property(strong, nonatomic) UIImage *backgroundImage;
-/**
- 设置Tabbar的selectionIndicatorImage
- */
-@property(strong, nonatomic) UIImage *selectionIndicatorImage;
-/**
- 设置Tabbar的shadowImage
- */
-@property(strong, nonatomic) UIImage *shadowImage;
-```
+* `ZXTabBarTheme`所有属性  
+
+|          属性           |                描述                 |
+| :---------------------: | :---------------------------------: |
+|        tintColor        |        设置Tabbar的tintColor        |
+|       translucent       |         设置Tabbar是否透明          |
+|      barTintColor       |         设置Tabbar的背景色          |
+|     backgroundImage     |        设置Tabbar的背景图片         |
+| selectionIndicatorImage | 设置Tabbar的selectionIndicatorImage |
+|       shadowImage       |       设置Tabbar的shadowImage       |
+
+
 
 ***
 
-### UITabBarItem
+### <a id="UITabBarItem"></a>UITabBarItem
 * 设置tabBarItem主题
 ```objective-c
 [ZXTheme defaultTheme].zx_tabBarItemThemeBlock = ^ZXTabBarItemTheme * _Nonnull(UITabBarItem * _Nonnull tabBarItem) {
@@ -762,41 +495,21 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return tabBarItemTheme;
 };
 ```
-* ZXTabBarItemTheme所有属性
-```objective-c
-/**
- 设置TabBarItem的image
- */
-@property(strong, nonatomic) UIImage *image;
-/**
- 设置TabBarItem的image颜色
- */
-@property(strong, nonatomic) UIColor *imageColor;
-/**
- 设置TabBarItem的selectedImage
- */
-@property(strong, nonatomic) UIImage *selectedImage;
-/**
- 设置TabBarItem的selectedImage颜色
- */
-@property(strong, nonatomic) UIColor *selectedImageColor;
+* `ZXTabBarItemTheme`所有属性  
 
-/**
- 根据状态设置TabBarItem文字属性
- 
- @param attributes 文字阴影颜色
- @param state 按钮状态
- */
-- (void)setTitleTextAttributes:(nullable NSDictionary<NSAttributedStringKey,id> *)attributes forState:(UIControlState)state;
-/**
- TabBarItem文字属性与状态映射的字典
- */
-@property(strong, nonatomic,readonly) NSMutableDictionary *titleTextAttributesMapper;
-```
+|            属性/方法             |               描述                |
+| :------------------------------: | :-------------------------------: |
+|              image               |       设置TabBarItem的image       |
+|            imageColor            |     设置TabBarItem的image颜色     |
+|          selectedImage           |   设置TabBarItem的selectedImage   |
+|        selectedImageColor        | 设置TabBarItem的selectedImage颜色 |
+| setTitleTextAttributes:forState: |  根据状态设置TabBarItem文字属性   |
+
+
 
 ***
 
-### UINavigationBar
+### <a id="UINavigationBar"></a>UINavigationBar
 * 设置navigationBar主题
 ```objective-c
 [ZXTheme defaultTheme].zx_navigationBarThemeBlock = ^ZXNavigationBarTheme * _Nonnull(UINavigationBar * _Nonnull navigationBar) {
@@ -807,33 +520,21 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return navigationBarTheme;
 };
 ```
-* ZXNavigationBarTheme所有属性
-```objective-c
-/**
- 设置NavigationBar的tintColor
- */
-@property(strong, nonatomic) UIColor *tintColor;
-/**
- 设置NavigationBar是否透明
- */
-@property(assign, nonatomic) BOOL translucent;
-/**
- 设置NavigationBar的背景色
- */
-@property(strong, nonatomic) UIColor *barTintColor;
-/**
- 设置NavigationBar的shadowImage
- */
-@property(strong, nonatomic) UIImage *shadowImage;
-/**
- 设置NavigationBar的titleTextAttributes
- */
-@property(strong, nonatomic) NSDictionary<NSAttributedStringKey, id> *titleTextAttributes;
-```
+* `ZXNavigationBarTheme`所有属性  
+
+|        属性         |                  描述                  |
+| :-----------------: | :------------------------------------: |
+|      tintColor      |      设置NavigationBar的tintColor      |
+|     translucent     |       设置NavigationBar是否透明        |
+|    barTintColor     |    设置NavigationBar的barTintColor     |
+|     shadowImage     |     设置NavigationBar的shadowImage     |
+| titleTextAttributes | 设置NavigationBar的titleTextAttributes |
+
+
 
 ***
 
-### UIBarButtonItem
+### <a id="UIBarButtonItem"></a>UIBarButtonItem
 * 设置barButtonItem主题
 ```objective-c
 [ZXTheme defaultTheme].zx_barButtonItemThemeBlock = ^ZXBarButtonItemTheme * _Nonnull(UIBarButtonItem * _Nonnull barButtonItem){
@@ -842,25 +543,19 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return barButtonItemTheme;
 };
 ```
-* ZXBarButtonItemTheme所有属性
-```objective-c
-/**
- 设置BarButtonItem的style
- */
-@property(assign, nonatomic) UIBarButtonItemStyle style;
-/**
- 设置BarButtonItem的tintColor
- */
-@property(strong, nonatomic) UIColor *tintColor;
-/**
- 设置BarButtonItem的customView
- */
-@property(strong, nonatomic) UIView *customView;
-```
+* `ZXBarButtonItemTheme`所有属性  
+
+|    属性    |             描述              |
+| :--------: | :---------------------------: |
+|   style    |   设置BarButtonItem的style    |
+| tintColor  | 设置BarButtonItem的tintColor  |
+| customView | 设置BarButtonItem的customView |
+
+
 
 ***
 
-### UITableView
+### <a id="UITableView"></a>UITableView
 * 设置tableView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_tableViewThemeBlock = ^ZXTableViewTheme * _Nonnull(UITableView * _Nonnull tableView) {
@@ -892,65 +587,29 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return tableViewTheme;
 };
 ```
-* ZXTableViewTheme所有属性
-```objective-c
-/**
- 设置TableView的backgroundColor
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-/**
- 设置TableView的backgroundView
- */
-@property(strong, nonatomic) UIView *backgroundView;
-/**
- 设置TableView的sectionIndexColor
- */
-@property(strong, nonatomic) UIColor *sectionIndexColor;
-/**
- 设置TableView的sectionIndexBackgroundColor
- */
-@property(strong, nonatomic) UIColor *sectionIndexBackgroundColor;
-/**
- 设置TableView的sectionIndexTrackingBackgroundColor
- */
-@property(strong, nonatomic) UIColor *sectionIndexTrackingBackgroundColor;
-/**
- 设置TableView的separatorStyle
- */
-@property(assign, nonatomic) UITableViewCellSeparatorStyle separatorStyle;
-/**
- 设置TableView的separatorColor
- */
-@property(strong, nonatomic) UIColor *separatorColor;
-/**
- 设置TableView的separatorEffect
- */
-@property(strong, nonatomic) UIVisualEffect *separatorEffect;
-/**
- 设置TableView的tableHeaderView
- */
-@property(strong, nonatomic) UIView *tableHeaderView;
-/**
- 设置TableView的tableFooterView
- */
-@property(strong, nonatomic) UIView *tableFooterView;
-/**
- 设置TableView的cell
- */
-@property(copy, nonatomic) UITableViewCell *(^cellForRowAtIndexPath)(UITableViewCell *cell,NSIndexPath *indexPath);
-/**
- 设置TableView的headerView
- */
-@property(copy, nonatomic) UIView *(^viewForHeaderInSection)(UIView *headerView,NSUInteger section);
-/**
- 设置TableView的footerView
- */
-@property(copy, nonatomic) UIView *(^viewForFooterInSection)(UIView *footerView,NSUInteger section);
-```
+* `ZXTableViewTheme`所有属性  
+
+|                属性                 |                        描述                        |
+| :---------------------------------: | :------------------------------------------------: |
+|           backgroundColor           |           设置TableView的backgroundColor           |
+|           backgroundView            |           设置TableView的backgroundView            |
+|          sectionIndexColor          |          设置TableView的sectionIndexColor          |
+|     sectionIndexBackgroundColor     |     设置TableView的sectionIndexBackgroundColor     |
+| sectionIndexTrackingBackgroundColor | 设置TableView的sectionIndexTrackingBackgroundColor |
+|           separatorStyle            |           设置TableView的separatorStyle            |
+|           separatorColor            |           设置TableView的separatorColor            |
+|           separatorEffect           |           设置TableView的separatorEffect           |
+|           tableHeaderView           |           设置TableView的tableHeaderView           |
+|           tableFooterView           |           设置TableView的tableFooterView           |
+|        cellForRowAtIndexPath        |                设置TableView的cell                 |
+|       viewForHeaderInSection        |             设置TableView的headerView              |
+|       viewForFooterInSection        |             设置TableView的footerView              |
+
+
 
 ***
 
-### UICollectionView
+### <a id="UICollectionView"></a>UICollectionView
 * 设置collectionView主题
 ```objective-c
 [ZXTheme defaultTheme].zx_collectionViewThemeBlock = ^ZXCollectionViewTheme * _Nonnull(UICollectionView * _Nonnull collectionView) {
@@ -978,26 +637,17 @@ ZXTheme用于修改全局UI的主题，设置方法与注意点说明以UILabel�
     return collectionViewTheme;
 };
 ```
-* ZXCollectionViewTheme所有属性
-```objective-c
-/**
- 设置CollectionView的backgroundColor
- */
-@property(strong, nonatomic) UIColor *backgroundColor;
-/**
- 设置CollectionView的backgroundView
- */
-@property(strong, nonatomic) UIView *backgroundView;
-/**
- 设置CollectionView的cell
- */
-@property(copy, nonatomic) UICollectionViewCell *(^cellForItemAtIndexPath)(UICollectionViewCell *cell,NSIndexPath *indexPath);
-/**
- 设置CollectionView的headerView和FfooterView
- */
-@property(copy, nonatomic) UICollectionReusableView *(^viewForSupplementaryElement)(UICollectionReusableView *reusableView,NSString *kind,NSIndexPath *indexPath);
-```
-### 自定义其他View或属性的主题
+* `ZXCollectionViewTheme`所有属性 
+
+|            属性             |                    描述                    |
+| :-------------------------: | :----------------------------------------: |
+|       backgroundColor       |    设置CollectionView的backgroundColor     |
+|       backgroundView        |     设置CollectionView的backgroundView     |
+|   cellForItemAtIndexPath    |          设置CollectionView的cell          |
+| viewForSupplementaryElement | 设置CollectionView的headerView和footerView |
+
+
+### <a id="custom"></a>自定义其他View或属性的主题
 * 例如需要添加UIAlertController的主题设置
 * 创建UIAlertController的分类
 * 在.m文件中实现
