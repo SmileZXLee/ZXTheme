@@ -116,7 +116,7 @@
                     }
                 }
                 if(trigger){
-                    [target performSelector:proSetSel withObject:[target valueForKey:propertyName] afterDelay:0];
+                    [target performSelector:proSetSel withObject:[target valueForKey:propertyName] afterDelay:0 inModes:@[NSRunLoopCommonModes]];
                 }
             }
         }

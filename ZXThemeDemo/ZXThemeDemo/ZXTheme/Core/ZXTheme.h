@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZXTheme : NSObject
 + (instancetype)defaultTheme;
 /**
- 是否是暗黑主题
+ 是否是暗黑主题(此变量仅用于作为全局变量存储当前主题状态，不能用于判断当前是否真的为暗黑模式)
  */
 @property(assign, nonatomic, getter=zx_isDarkTheme)BOOL zx_darkTheme;
 /**
