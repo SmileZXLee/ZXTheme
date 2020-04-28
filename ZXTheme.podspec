@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = 'ZXTheme'
-s.version      = '1.0.3'
+s.version      = '1.0.4'
 s.summary      = '零侵入修改全局主题'
 s.homepage     = 'https://github.com/SmileZXLee/ZXTheme'
 s.license      = 'MIT'
